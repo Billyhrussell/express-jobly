@@ -21,29 +21,4 @@ function sqlForPartialUpdate(dataToUpdate, jsToSql) {
   };
 }
 
-function sqlForFiltering(dataToFilter) {
-  const keys = Object.keys(dataToFilter);
-  if (keys.length === 0) throw new BadRequestError("No data");
-
-  const jsToSql = { name: "name ILIKE ",
-                    minEmployees: "num_employees >=",
-                    maxEmployees: "num_employees <=" };
-
-  // {name: 'hi', minEmployees: 20, maxEmployees: 50} =>
-  // ['"name" ILIKE $1 AND "num_employees">$2 AND num_employees < $3']
-  const cols = keys.map((colName, idx) =>
-      `${jsToSql[colName] || colName}$${idx + 1}`,
-  );
-
-  if (dataToFilter.name) {
-    dataToFilter.name = '%'.concat(dataToFilter.name,'%');
-  }
-
-  return {
-    setCols: cols.join(" AND "),
-    values: Object.values(dataToFilter)
-  };
-}
-
-module.exports = { sqlForPartialUpdate,
-                   sqlForFiltering };
+module.exports = { sqlForPartialUpdate };

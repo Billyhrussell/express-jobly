@@ -29,7 +29,7 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
   const validator = jsonschema.validate(
     req.body,
     companyNewSchema,
-    {required: true}
+    { required: true }
   );
   if (!validator.valid) {
     const errs = validator.errors.map(e => e.stack);
@@ -53,43 +53,41 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
 
 router.get("/", async function (req, res, next) {
   let companies;
+  let q = req.query;
 
-  if (!req.query) {
-    companies = await Company.findAll();
+  if (q.minEmployees !== undefined) {
+    q.minEmployees = parseInt(q.minEmployees);
+    if (isNaN(q.minEmployees)) {
+      throw new BadRequestError("minEmployees must be a number");
+    }
   }
 
-  // if (req.query.minEmployees) {
-  //   req.query.minEmployees = Number(req.query.minEmployees);
-  //   console.log(req.query.minEmployees);
-  //   if (isNaN(req.query.minEmployees)) {
-  //     throw new BadRequestError("minEmployees must be a number");
-  //   }
-  // }
-
-  // if (req.query.maxEmployees) {
-  //   req.query.maxEmployees = Number(req.query.maxEmployees);
-  //   if (isNaN(req.query.maxEmployees)) {
-  //     throw new BadRequestError("maxEmployees must be a number");
-  //   }
-  // }
+  if (q.maxEmployees !== undefined) {
+    q.maxEmployees = parseInt(q.maxEmployees);
+    if (isNaN(q.maxEmployees)) {
+      throw new BadRequestError("maxEmployees must be a number");
+    }
+  }
+  if(q.minEmployees && q.maxEmployees){
+    if(q.minEmployees > q.maxEmployees){
+      throw new BadRequestError("minEmployees must be less than maxEmployees");
+    }
+  }
 
   const validator = jsonschema.validate(
-    req.query,
+    q,
     companyFilterSchema,
-    {required: true}
+    { required: true }
   );
 
   if (!validator.valid) {
+    console.log("validator");
     const errs = validator.errors.map(e => e.stack);
     throw new BadRequestError(errs);
   }
 
+  companies = await Company.findAll(q);
   // how do we make sure num employees is an integer? query string defaults to string?
-  try {
-    companies = await Company.findSome(req.query);
-  } catch (err) {
-    throw new BadRequestError(err)
-  }
 
   return res.json({ companies });
 });
@@ -122,7 +120,7 @@ router.patch("/:handle", ensureLoggedIn, async function (req, res, next) {
   const validator = jsonschema.validate(
     req.body,
     companyUpdateSchema,
-    {required:true}
+    { required: true }
   );
   if (!validator.valid) {
     const errs = validator.errors.map(e => e.stack);

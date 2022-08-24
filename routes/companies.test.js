@@ -12,6 +12,7 @@ const {
   commonAfterAll,
   u1Token,
 } = require("./_testCommon");
+const { query } = require("express");
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
@@ -97,7 +98,8 @@ describe("GET /companies", function () {
   });
 
   test("filter by name", async function () {
-    const resp = await request(app).get("/companies?name=1");
+    const resp = await request(app).get("/companies?name=c1");
+
     expect(resp.body).toEqual({
       companies:
           [
@@ -113,7 +115,8 @@ describe("GET /companies", function () {
   });
 
   test("filter by name and minEmployees", async function () {
-    const resp = await request(app).get("/companies?name=2&minEmployees=2");
+    const resp = await request(app).get("/companies")
+    .query({name: "2", minEmployees: "2"});
     expect(resp.body).toEqual({
       companies:
           [
@@ -127,6 +130,14 @@ describe("GET /companies", function () {
           ],
     });
   });
+
+  test("check min cannot be > max", async function() {
+    const resp = await request(app).get("/companies")
+    .query({ maxEmployees: "1", minEmployees: "2"});
+
+    expect(resp.statusCode).toEqual(400);
+  })
+
 
   test("fails: test next() handler", async function () {
     // there's no normal failure event which will cause this route to fail ---
