@@ -30,10 +30,13 @@ async function commonBeforeAll() {
       ]);
 }
 
+/** all statements after a BEGIN command will be executed
+ *  in a single transaction until an explicit COMMIT or
+ * ROLLBACK is given */
 async function commonBeforeEach() {
   await db.query("BEGIN");
 }
-
+/** Terminate  trasaction block*/
 async function commonAfterEach() {
   await db.query("ROLLBACK");
 }
