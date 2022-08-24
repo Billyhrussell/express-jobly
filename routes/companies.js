@@ -11,6 +11,7 @@ const Company = require("../models/company");
 
 const companyNewSchema = require("../schemas/companyNew.json");
 const companyUpdateSchema = require("../schemas/companyUpdate.json");
+const companyFilterSchema = require("../schemas/companyFilter.json");
 
 const router = new express.Router();
 
@@ -51,7 +52,45 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
  */
 
 router.get("/", async function (req, res, next) {
-  const companies = await Company.findAll();
+  let companies;
+
+  if (!req.query) {
+    companies = await Company.findAll();
+  }
+
+  // if (req.query.minEmployees) {
+  //   req.query.minEmployees = Number(req.query.minEmployees);
+  //   console.log(req.query.minEmployees);
+  //   if (isNaN(req.query.minEmployees)) {
+  //     throw new BadRequestError("minEmployees must be a number");
+  //   }
+  // }
+
+  // if (req.query.maxEmployees) {
+  //   req.query.maxEmployees = Number(req.query.maxEmployees);
+  //   if (isNaN(req.query.maxEmployees)) {
+  //     throw new BadRequestError("maxEmployees must be a number");
+  //   }
+  // }
+
+  const validator = jsonschema.validate(
+    req.query,
+    companyFilterSchema,
+    {required: true}
+  );
+
+  if (!validator.valid) {
+    const errs = validator.errors.map(e => e.stack);
+    throw new BadRequestError(errs);
+  }
+
+  // how do we make sure num employees is an integer? query string defaults to string?
+  try {
+    companies = await Company.findSome(req.query);
+  } catch (err) {
+    throw new BadRequestError(err)
+  }
+
   return res.json({ companies });
 });
 
