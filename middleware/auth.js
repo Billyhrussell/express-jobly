@@ -49,9 +49,8 @@ function ensureLoggedIn(req, res, next) {
  * If not, raises Unauthorized.
  */
 
- function ensureAuthorized(req, res, next) {
+function ensureAuthorized(req, res, next) {
   try {
-    debugger;
     if (!res.locals.user.isAdmin) throw new UnauthorizedError();
     return next();
   } catch (err) {
@@ -59,8 +58,25 @@ function ensureLoggedIn(req, res, next) {
   }
 }
 
+/** check that logged in user is correct user */
+function ensureCorrectUser(req, res, next){
+  try{
+    if(req.params.username === res.locals.user.username){
+      return next();
+    }
+    if(!res.locals.user.isAdmin){
+      throw new  UnauthorizedError();
+    }
+    return next();
+  }catch(err){
+    return next(err);
+  }
+
+}
+
 module.exports = {
   authenticateJWT,
   ensureLoggedIn,
-  ensureAuthorized
+  ensureAuthorized,
+  ensureCorrectUser
 };
