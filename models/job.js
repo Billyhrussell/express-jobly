@@ -13,7 +13,6 @@ class Job {
    *
    * Returns { title, salary, equity, companyHandle }
    *
-   * TODO: Throws BadRequestError if job already in database? Can have multiple openings for same job?
    * */
 
   static async create({ title, salary, equity, companyHandle }) {
@@ -52,13 +51,12 @@ class Job {
    * returns js object with string of where for WHERE clause
    * and values to filter by
    *  {title: 'hi', minSalary: 20, hasEquity: true } =>
-      {where: 'title ILIKE $1 AND min_salary > $2 AND hasEquity = $3',
-      values: [hi, 20, true]}
+      {where: 'title ILIKE $1 AND salary > $2 AND equity > 0',
+      values: [hi, 20]}
    */
   static _sqlForFiltering(dataToFilter) {
 
     const { title, minSalary, hasEquity } = dataToFilter;
-
     let where = [];
 
     if(title) {
@@ -83,24 +81,24 @@ class Job {
     };
   }
 
-  /** Find all job.
+  /** Find all jobs.
    *  Has option to filter by title or minimum salary or equity
    * Returns [{ title, salary, equity, companyHandle }, ...]
-   * */ //FIXME: _sqlForFiltering
+   * */
 
   static async findAll(data) {
 
     const { where, values } = this._sqlForFiltering(data);
 
-    const companiesRes = await db.query(
+    const jobRes = await db.query(
       `SELECT title,
               salary,
               equity,
-              company_handle AS companyHandle
+              company_handle AS "companyHandle"
            FROM jobs
            ${where}
-           ORDER BY title`, values);
-    return companiesRes.rows;
+           ORDER BY company_handle`, values);
+    return jobRes.rows;
   }
 
   /** Given a job id, return data about job.
@@ -111,22 +109,21 @@ class Job {
    * Throws NotFoundError if not found.
    **/
 
-  static async get(handle) {
-    const companyRes = await db.query(
-      `SELECT handle,
-                name,
-                description,
-                num_employees AS "numEmployees",
-                logo_url AS "logoUrl"
-           FROM companies
-           WHERE handle = $1`,
-      [handle]);
+  static async get(id) {
+    const jobRes = await db.query(
+      `SELECT title,
+              salary,
+              equity,
+              company_handle as "companyHandle"
+           FROM jobs
+           WHERE id = $1`,
+      [id]);
 
-    const company = companyRes.rows[0];
+    const job = jobRes.rows[0];
 
-    if (!company) throw new NotFoundError(`No company: ${handle}`);
+    if (!job) throw new NotFoundError(`No job: ${id}`);
 
-    return company;
+    return job;
   }
 
   /** Update job data with `data`.
@@ -141,43 +138,38 @@ class Job {
    * Throws NotFoundError if not found.
    */
 
-  static async update(handle, data) {
-    const { setCols, values } = sqlForPartialUpdate(
-      data,
-      {
-        numEmployees: "num_employees",
-        logoUrl: "logo_url",
-      });
-    const handleVarIdx = "$" + (values.length + 1);
+  static async update(id, data) {
+    const { setCols, values } = sqlForPartialUpdate(data, {});
+    const idVarIdx = "$" + (values.length + 1);
 
     const querySql = `
-      UPDATE companies
+      UPDATE jobs
       SET ${setCols}
-        WHERE handle = ${handleVarIdx}
-        RETURNING handle, name, description, num_employees AS "numEmployees", logo_url AS "logoUrl"`;
-    const result = await db.query(querySql, [...values, handle]);
-    const company = result.rows[0];
+        WHERE id = ${idVarIdx}
+        RETURNING title, salary, equity, company_handle AS "companyHandle"`;
+    const result = await db.query(querySql, [...values, id]);
+    const job = result.rows[0];
 
-    if (!company) throw new NotFoundError(`No company: ${handle}`);
+    if (!job) throw new NotFoundError(`No job: ${id}`);
 
-    return company;
+    return job;
   }
 
   /** Delete given job from database; returns undefined.
    *
-   * Throws NotFoundError if company not found.
+   * Throws NotFoundError if job not found.
    **/
 
-  static async remove(handle) {
+  static async remove(id) {
     const result = await db.query(
       `DELETE
-           FROM companies
-           WHERE handle = $1
-           RETURNING handle`,
-      [handle]);
-    const company = result.rows[0];
+           FROM jobs
+           WHERE id = $1
+           RETURNING id`,
+      [id]);
+    const job = result.rows[0];
 
-    if (!company) throw new NotFoundError(`No company: ${handle}`);
+    if (!job) throw new NotFoundError(`No job: ${id}`);
   }
 }
 

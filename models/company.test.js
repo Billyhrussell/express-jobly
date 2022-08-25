@@ -56,6 +56,17 @@ describe("create", function () {
   });
 });
 
+/************************************** getJobs */
+describe("getJobs", function(){
+  test("receieve correct jobs for company", async function(){
+    const results = await Company.getJobs("c1");
+    const jobs = results.rows;
+    expect(jobs).toEqual(
+      [{id: expect.any(Number), title: 'j1', salary: 1000, equity: 0.1}])
+  })
+})
+
+
 /************************************** sqlForFiltering */
 
 describe("sqlForFiltering", function(){

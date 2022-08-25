@@ -1,153 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1661450141353" clover="3.2.0">
-  <project timestamp="1661450141353" name="All files">
-    <metrics statements="312" coveredstatements="311" conditionals="102" coveredconditionals="97" methods="54" coveredmethods="53" elements="468" coveredelements="461" complexity="0" loc="312" ncloc="312" packages="5" files="14" classes="14"/>
+<coverage generated="1661466125416" clover="3.2.0">
+  <project timestamp="1661466125416" name="All files">
+    <metrics statements="411" coveredstatements="410" conditionals="128" coveredconditionals="123" methods="70" coveredmethods="69" elements="609" coveredelements="602" complexity="0" loc="411" ncloc="411" packages="5" files="16" classes="16"/>
     <package name="express-jobly">
-      <metrics statements="50" coveredstatements="49" conditionals="18" coveredconditionals="16" methods="8" coveredmethods="7"/>
+      <metrics statements="55" coveredstatements="54" conditionals="18" coveredconditionals="16" methods="9" coveredmethods="8"/>
       <file name="app.js" path="/Users/bills/Downloads/express-jobly/app.js">
-        <metrics statements="24" coveredstatements="24" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
-        <line num="17" count="4" type="stmt"/>
-        <line num="19" count="4" type="stmt"/>
-        <line num="20" count="4" type="stmt"/>
-        <line num="21" count="4" type="stmt"/>
-        <line num="22" count="4" type="stmt"/>
-        <line num="24" count="4" type="stmt"/>
-        <line num="25" count="4" type="stmt"/>
-        <line num="26" count="4" type="stmt"/>
-        <line num="30" count="4" type="stmt"/>
-        <line num="31" count="2" type="stmt"/>
-        <line num="35" count="4" type="stmt"/>
-        <line num="36" count="41" type="cond" truecount="2" falsecount="0"/>
-        <line num="37" count="41" type="cond" truecount="2" falsecount="0"/>
-        <line num="38" count="41" type="stmt"/>
-        <line num="40" count="41" type="stmt"/>
-        <line num="45" count="4" type="stmt"/>
+        <metrics statements="26" coveredstatements="26" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="32" count="5" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="37" count="5" type="stmt"/>
+        <line num="38" count="57" type="cond" truecount="2" falsecount="0"/>
+        <line num="39" count="57" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="57" type="stmt"/>
+        <line num="42" count="57" type="stmt"/>
+        <line num="47" count="5" type="stmt"/>
       </file>
       <file name="config.js" path="/Users/bills/Downloads/express-jobly/config.js">
         <metrics statements="13" coveredstatements="13" conditionals="10" coveredconditionals="10" methods="1" coveredmethods="1"/>
-        <line num="5" count="9" type="stmt"/>
-        <line num="6" count="9" type="stmt"/>
-        <line num="8" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="10" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="14" count="18" type="cond" truecount="2" falsecount="0"/>
-        <line num="22" count="9" type="cond" truecount="2" falsecount="0"/>
-        <line num="24" count="9" type="stmt"/>
-        <line num="25" count="9" type="stmt"/>
-        <line num="26" count="9" type="stmt"/>
-        <line num="27" count="9" type="stmt"/>
-        <line num="28" count="9" type="stmt"/>
-        <line num="29" count="9" type="stmt"/>
-        <line num="31" count="9" type="stmt"/>
+        <line num="5" count="11" type="stmt"/>
+        <line num="6" count="11" type="stmt"/>
+        <line num="8" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="11" type="stmt"/>
+        <line num="25" count="11" type="stmt"/>
+        <line num="26" count="11" type="stmt"/>
+        <line num="27" count="11" type="stmt"/>
+        <line num="28" count="11" type="stmt"/>
+        <line num="29" count="11" type="stmt"/>
+        <line num="31" count="11" type="stmt"/>
       </file>
       <file name="db.js" path="/Users/bills/Downloads/express-jobly/db.js">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="5" count="6" type="stmt"/>
-        <line num="6" count="6" type="stmt"/>
-        <line num="8" count="6" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="14" count="6" type="stmt"/>
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="8" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="8" count="27" type="stmt"/>
+        <line num="10" count="8" type="stmt"/>
+        <line num="12" count="8" type="stmt"/>
+        <line num="16" count="8" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
       </file>
       <file name="expressError.js" path="/Users/bills/Downloads/express-jobly/expressError.js">
         <metrics statements="8" coveredstatements="7" conditionals="4" coveredconditionals="2" methods="5" coveredmethods="4"/>
-        <line num="9" count="54" type="stmt"/>
-        <line num="10" count="54" type="stmt"/>
-        <line num="11" count="54" type="stmt"/>
-        <line num="19" count="14" type="stmt"/>
-        <line num="27" count="20" type="stmt"/>
-        <line num="35" count="20" type="stmt"/>
+        <line num="9" count="74" type="stmt"/>
+        <line num="10" count="74" type="stmt"/>
+        <line num="11" count="74" type="stmt"/>
+        <line num="19" count="20" type="stmt"/>
+        <line num="27" count="25" type="stmt"/>
+        <line num="35" count="29" type="stmt"/>
         <line num="43" count="0" type="stmt"/>
-        <line num="47" count="8" type="stmt"/>
+        <line num="47" count="10" type="stmt"/>
       </file>
     </package>
     <package name="express-jobly.helpers">
       <metrics statements="13" coveredstatements="13" conditionals="6" coveredconditionals="6" methods="3" coveredmethods="3"/>
       <file name="sql.js" path="/Users/bills/Downloads/express-jobly/helpers/sql.js">
         <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
-        <line num="1" count="7" type="stmt"/>
-        <line num="10" count="16" type="stmt"/>
-        <line num="11" count="16" type="cond" truecount="2" falsecount="0"/>
-        <line num="14" count="13" type="stmt"/>
-        <line num="15" count="26" type="cond" truecount="2" falsecount="0"/>
-        <line num="18" count="13" type="stmt"/>
-        <line num="24" count="7" type="stmt"/>
+        <line num="1" count="9" type="stmt"/>
+        <line num="10" count="22" type="stmt"/>
+        <line num="11" count="22" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="18" type="stmt"/>
+        <line num="15" count="37" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="18" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
       </file>
       <file name="tokens.js" path="/Users/bills/Downloads/express-jobly/helpers/tokens.js">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="2" count="5" type="stmt"/>
-        <line num="7" count="13" type="stmt"/>
-        <line num="10" count="13" type="stmt"/>
-        <line num="15" count="13" type="stmt"/>
-        <line num="18" count="5" type="stmt"/>
+        <line num="1" count="6" type="stmt"/>
+        <line num="2" count="6" type="stmt"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="10" count="15" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
       </file>
     </package>
     <package name="express-jobly.middleware">
       <metrics statements="26" coveredstatements="26" conditionals="15" coveredconditionals="15" methods="4" coveredmethods="4"/>
       <file name="auth.js" path="/Users/bills/Downloads/express-jobly/middleware/auth.js">
         <metrics statements="26" coveredstatements="26" conditionals="15" coveredconditionals="15" methods="4" coveredmethods="4"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="6" count="5" type="stmt"/>
-        <line num="7" count="5" type="stmt"/>
-        <line num="19" count="64" type="stmt"/>
-        <line num="20" count="64" type="cond" truecount="2" falsecount="0"/>
-        <line num="21" count="64" type="cond" truecount="2" falsecount="0"/>
-        <line num="22" count="36" type="stmt"/>
-        <line num="23" count="36" type="stmt"/>
-        <line num="25" count="63" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="19" count="87" type="stmt"/>
+        <line num="20" count="87" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="87" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="49" type="stmt"/>
+        <line num="23" count="49" type="stmt"/>
+        <line num="25" count="86" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
         <line num="37" count="2" type="stmt"/>
         <line num="38" count="2" type="stmt"/>
         <line num="39" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="40" count="1" type="stmt"/>
         <line num="42" count="1" type="stmt"/>
-        <line num="53" count="24" type="stmt"/>
-        <line num="54" count="24" type="cond" truecount="4" falsecount="0"/>
-        <line num="55" count="14" type="stmt"/>
-        <line num="57" count="10" type="stmt"/>
+        <line num="53" count="38" type="stmt"/>
+        <line num="54" count="38" type="cond" truecount="4" falsecount="0"/>
+        <line num="55" count="23" type="stmt"/>
+        <line num="57" count="15" type="stmt"/>
         <line num="63" count="16" type="stmt"/>
         <line num="64" count="16" type="stmt"/>
         <line num="65" count="16" type="cond" truecount="5" falsecount="0"/>
         <line num="66" count="5" type="stmt"/>
         <line num="69" count="11" type="stmt"/>
         <line num="71" count="5" type="stmt"/>
-        <line num="76" count="5" type="stmt"/>
+        <line num="76" count="6" type="stmt"/>
       </file>
     </package>
     <package name="express-jobly.models">
-      <metrics statements="98" coveredstatements="98" conditionals="39" coveredconditionals="37" methods="16" coveredmethods="16"/>
+      <metrics statements="142" coveredstatements="142" conditionals="55" coveredconditionals="53" methods="22" coveredmethods="22"/>
       <file name="_testCommon.js" path="/Users/bills/Downloads/express-jobly/models/_testCommon.js">
-        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="12" count="2" type="stmt"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="37" count="30" type="stmt"/>
-        <line num="41" count="30" type="stmt"/>
-        <line num="45" count="2" type="stmt"/>
-        <line num="49" count="2" type="stmt"/>
+        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="53" count="46" type="stmt"/>
+        <line num="57" count="46" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
       </file>
       <file name="company.js" path="/Users/bills/Downloads/express-jobly/models/company.js">
         <metrics statements="47" coveredstatements="47" conditionals="25" coveredconditionals="23" methods="6" coveredmethods="6"/>
-        <line num="3" count="5" type="stmt"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="20" count="13" type="stmt"/>
-        <line num="26" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="20" count="16" type="stmt"/>
+        <line num="26" count="16" type="cond" truecount="2" falsecount="0"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="29" count="12" type="stmt"/>
-        <line num="47" count="12" type="stmt"/>
-        <line num="49" count="12" type="stmt"/>
+        <line num="29" count="15" type="stmt"/>
+        <line num="47" count="15" type="stmt"/>
+        <line num="49" count="15" type="stmt"/>
         <line num="65" count="9" type="stmt"/>
         <line num="67" count="9" type="stmt"/>
         <line num="68" count="9" type="stmt"/>
@@ -185,15 +195,57 @@
         <line num="188" count="4" type="stmt"/>
         <line num="194" count="4" type="stmt"/>
         <line num="196" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="201" count="5" type="stmt"/>
+        <line num="201" count="6" type="stmt"/>
+      </file>
+      <file name="job.js" path="/Users/bills/Downloads/express-jobly/models/job.js">
+        <metrics statements="39" coveredstatements="39" conditionals="16" coveredconditionals="16" methods="6" coveredmethods="6"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="19" count="16" type="stmt"/>
+        <line num="25" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="28" count="15" type="stmt"/>
+        <line num="44" count="15" type="stmt"/>
+        <line num="46" count="15" type="stmt"/>
+        <line num="59" count="10" type="stmt"/>
+        <line num="61" count="10" type="stmt"/>
+        <line num="63" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="64" count="5" type="stmt"/>
+        <line num="65" count="5" type="stmt"/>
+        <line num="68" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="70" count="10" type="stmt"/>
+        <line num="72" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="73" count="3" type="stmt"/>
+        <line num="74" count="3" type="stmt"/>
+        <line num="77" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="79" count="10" type="stmt"/>
+        <line num="92" count="8" type="stmt"/>
+        <line num="94" count="8" type="stmt"/>
+        <line num="102" count="7" type="stmt"/>
+        <line num="114" count="4" type="stmt"/>
+        <line num="123" count="4" type="stmt"/>
+        <line num="125" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="127" count="2" type="stmt"/>
+        <line num="143" count="6" type="stmt"/>
+        <line num="147" count="5" type="stmt"/>
+        <line num="149" count="5" type="stmt"/>
+        <line num="154" count="5" type="stmt"/>
+        <line num="155" count="5" type="stmt"/>
+        <line num="157" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="159" count="3" type="stmt"/>
+        <line num="168" count="4" type="stmt"/>
+        <line num="174" count="4" type="stmt"/>
+        <line num="176" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="181" count="6" type="stmt"/>
       </file>
       <file name="user.js" path="/Users/bills/Downloads/express-jobly/models/user.js">
         <metrics statements="40" coveredstatements="40" conditionals="14" coveredconditionals="14" methods="6" coveredmethods="6"/>
-        <line num="3" count="5" type="stmt"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="10" count="5" type="stmt"/>
-        <line num="12" count="5" type="stmt"/>
+        <line num="3" count="6" type="stmt"/>
+        <line num="4" count="6" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
         <line num="26" count="7" type="stmt"/>
         <line num="38" count="7" type="stmt"/>
         <line num="40" count="7" type="cond" truecount="2" falsecount="0"/>
@@ -202,13 +254,13 @@
         <line num="44" count="3" type="stmt"/>
         <line num="45" count="3" type="stmt"/>
         <line num="49" count="4" type="stmt"/>
-        <line num="61" count="19" type="stmt"/>
-        <line num="68" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="61" count="23" type="stmt"/>
+        <line num="68" count="23" type="cond" truecount="2" falsecount="0"/>
         <line num="69" count="1" type="stmt"/>
-        <line num="72" count="18" type="stmt"/>
-        <line num="74" count="18" type="stmt"/>
-        <line num="94" count="18" type="stmt"/>
-        <line num="96" count="18" type="stmt"/>
+        <line num="72" count="22" type="stmt"/>
+        <line num="74" count="22" type="stmt"/>
+        <line num="94" count="22" type="stmt"/>
+        <line num="96" count="22" type="stmt"/>
         <line num="105" count="2" type="stmt"/>
         <line num="115" count="2" type="stmt"/>
         <line num="127" count="5" type="stmt"/>
@@ -228,44 +280,51 @@
         <line num="196" count="5" type="stmt"/>
         <line num="203" count="5" type="stmt"/>
         <line num="205" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="210" count="5" type="stmt"/>
+        <line num="210" count="6" type="stmt"/>
       </file>
     </package>
     <package name="express-jobly.routes">
-      <metrics statements="125" coveredstatements="125" conditionals="24" coveredconditionals="23" methods="23" coveredmethods="23"/>
+      <metrics statements="175" coveredstatements="175" conditionals="34" coveredconditionals="33" methods="32" coveredmethods="32"/>
       <file name="_testCommon.js" path="/Users/bills/Downloads/express-jobly/routes/_testCommon.js">
-        <metrics statements="19" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="4" count="3" type="stmt"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="6" count="3" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="12" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="22" count="3" type="stmt"/>
-        <line num="30" count="3" type="stmt"/>
-        <line num="39" count="3" type="stmt"/>
-        <line num="47" count="3" type="stmt"/>
-        <line num="55" count="3" type="stmt"/>
-        <line num="63" count="3" type="stmt"/>
-        <line num="74" count="59" type="stmt"/>
-        <line num="78" count="59" type="stmt"/>
-        <line num="82" count="3" type="stmt"/>
-        <line num="86" count="3" type="stmt"/>
-        <line num="87" count="3" type="stmt"/>
-        <line num="90" count="3" type="stmt"/>
+        <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="12" count="4" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="16" count="4" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="32" count="4" type="stmt"/>
+        <line num="41" count="4" type="stmt"/>
+        <line num="49" count="4" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+        <line num="65" count="4" type="stmt"/>
+        <line num="73" count="4" type="stmt"/>
+        <line num="78" count="4" type="stmt"/>
+        <line num="84" count="4" type="stmt"/>
+        <line num="90" count="4" type="stmt"/>
+        <line num="91" count="12" type="stmt"/>
+        <line num="95" count="82" type="stmt"/>
+        <line num="99" count="82" type="stmt"/>
+        <line num="103" count="4" type="stmt"/>
+        <line num="107" count="4" type="stmt"/>
+        <line num="108" count="4" type="stmt"/>
+        <line num="111" count="4" type="stmt"/>
       </file>
       <file name="auth.js" path="/Users/bills/Downloads/express-jobly/routes/auth.js">
         <metrics statements="26" coveredstatements="26" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="9" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="22" count="4" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
         <line num="23" count="5" type="stmt"/>
         <line num="28" count="5" type="cond" truecount="2" falsecount="0"/>
         <line num="29" count="2" type="stmt"/>
@@ -274,7 +333,7 @@
         <line num="34" count="3" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
-        <line num="49" count="4" type="stmt"/>
+        <line num="49" count="5" type="stmt"/>
         <line num="50" count="3" type="stmt"/>
         <line num="55" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="56" count="5" type="stmt"/>
@@ -282,27 +341,27 @@
         <line num="60" count="1" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
         <line num="62" count="1" type="stmt"/>
-        <line num="66" count="4" type="stmt"/>
+        <line num="66" count="5" type="stmt"/>
       </file>
       <file name="companies.js" path="/Users/bills/Downloads/express-jobly/routes/companies.js">
         <metrics statements="46" coveredstatements="46" conditionals="16" coveredconditionals="15" methods="8" coveredmethods="8"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="9" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="14" count="4" type="stmt"/>
-        <line num="16" count="4" type="stmt"/>
-        <line num="28" count="4" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
         <line num="29" count="3" type="stmt"/>
         <line num="34" count="3" type="cond" truecount="2" falsecount="0"/>
         <line num="35" count="3" type="stmt"/>
         <line num="36" count="2" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
-        <line num="54" count="4" type="stmt"/>
+        <line num="54" count="5" type="stmt"/>
         <line num="56" count="8" type="stmt"/>
         <line num="58" count="8" type="cond" truecount="2" falsecount="0"/>
         <line num="59" count="3" type="stmt"/>
@@ -318,33 +377,79 @@
         <line num="81" count="3" type="stmt"/>
         <line num="84" count="4" type="stmt"/>
         <line num="86" count="3" type="stmt"/>
-        <line num="97" count="4" type="stmt"/>
+        <line num="97" count="5" type="stmt"/>
         <line num="98" count="3" type="stmt"/>
         <line num="99" count="2" type="stmt"/>
-        <line num="113" count="4" type="stmt"/>
+        <line num="113" count="5" type="stmt"/>
         <line num="114" count="4" type="stmt"/>
         <line num="119" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="120" count="2" type="stmt"/>
         <line num="121" count="2" type="stmt"/>
         <line num="124" count="2" type="stmt"/>
         <line num="125" count="1" type="stmt"/>
-        <line num="133" count="4" type="stmt"/>
+        <line num="133" count="5" type="stmt"/>
         <line num="134" count="2" type="stmt"/>
         <line num="135" count="1" type="stmt"/>
-        <line num="139" count="4" type="stmt"/>
+        <line num="139" count="5" type="stmt"/>
+      </file>
+      <file name="jobs.js" path="/Users/bills/Downloads/express-jobly/routes/jobs.js">
+        <metrics statements="43" coveredstatements="43" conditionals="10" coveredconditionals="10" methods="8" coveredmethods="8"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="34" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="54" count="5" type="stmt"/>
+        <line num="56" count="7" type="stmt"/>
+        <line num="58" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="62" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="66" count="7" type="stmt"/>
+        <line num="72" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="73" count="3" type="stmt"/>
+        <line num="74" count="3" type="stmt"/>
+        <line num="75" count="3" type="stmt"/>
+        <line num="78" count="4" type="stmt"/>
+        <line num="80" count="3" type="stmt"/>
+        <line num="90" count="5" type="stmt"/>
+        <line num="91" count="2" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="106" count="5" type="stmt"/>
+        <line num="107" count="4" type="stmt"/>
+        <line num="112" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="113" count="2" type="stmt"/>
+        <line num="114" count="2" type="stmt"/>
+        <line num="117" count="2" type="stmt"/>
+        <line num="118" count="1" type="stmt"/>
+        <line num="126" count="5" type="stmt"/>
+        <line num="127" count="2" type="stmt"/>
+        <line num="128" count="1" type="stmt"/>
+        <line num="132" count="5" type="stmt"/>
       </file>
       <file name="users.js" path="/Users/bills/Downloads/express-jobly/routes/users.js">
         <metrics statements="34" coveredstatements="34" conditionals="4" coveredconditionals="4" methods="7" coveredmethods="7"/>
-        <line num="5" count="4" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="8" count="4" type="stmt"/>
-        <line num="9" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
-        <line num="30" count="4" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
         <line num="33" count="4" type="stmt"/>
         <line num="38" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="39" count="5" type="stmt"/>
@@ -352,23 +457,23 @@
         <line num="43" count="2" type="stmt"/>
         <line num="44" count="2" type="stmt"/>
         <line num="45" count="2" type="stmt"/>
-        <line num="56" count="4" type="stmt"/>
+        <line num="56" count="5" type="stmt"/>
         <line num="58" count="1" type="stmt"/>
         <line num="59" count="1" type="stmt"/>
-        <line num="71" count="4" type="stmt"/>
+        <line num="71" count="5" type="stmt"/>
         <line num="73" count="3" type="stmt"/>
         <line num="74" count="2" type="stmt"/>
-        <line num="89" count="4" type="stmt"/>
-        <line num="91" count="5" type="stmt"/>
-        <line num="96" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="88" count="5" type="stmt"/>
+        <line num="90" count="5" type="stmt"/>
+        <line num="95" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="96" count="1" type="stmt"/>
         <line num="97" count="1" type="stmt"/>
-        <line num="98" count="1" type="stmt"/>
-        <line num="101" count="4" type="stmt"/>
-        <line num="102" count="3" type="stmt"/>
-        <line num="112" count="4" type="stmt"/>
-        <line num="114" count="3" type="stmt"/>
-        <line num="115" count="2" type="stmt"/>
-        <line num="119" count="4" type="stmt"/>
+        <line num="100" count="4" type="stmt"/>
+        <line num="101" count="3" type="stmt"/>
+        <line num="110" count="5" type="stmt"/>
+        <line num="112" count="3" type="stmt"/>
+        <line num="113" count="2" type="stmt"/>
+        <line num="117" count="5" type="stmt"/>
       </file>
     </package>
   </project>

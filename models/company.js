@@ -50,6 +50,19 @@ class Company {
   }
 
   /**
+   *
+   *
+   */
+  static async getJobs(handle){
+    const jobs = await db.query(`
+      SELECT id, title, salary, equity
+      FROM jobs
+      WHERE company_handle = $1`, [handle]
+    )
+    return jobs.rows;
+  };
+
+  /**
    * Accepts an object with data to filter selection in database
    * returns js object with string of setCols for WHERE clause
    * and values to filter by
