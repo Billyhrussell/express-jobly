@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>28/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>27/27</span>
+                <span class='fraction'>26/26</span>
             </div>
         
             
@@ -144,8 +144,7 @@
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,14 +180,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">42x</span>
-<span class="cline-any cline-yes">42x</span>
-<span class="cline-any cline-yes">42x</span>
-<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -197,26 +194,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -273,29 +271,28 @@ function ensureLoggedIn(req, res, next) {
 }
 &nbsp;
 &nbsp;
-/** Middleware to use when they must be logged in.
+/** Middleware to use when user must be an admin
  *
  * If not, raises Unauthorized.
  */
 &nbsp;
-function ensureAuthorized(req, res, next) {
+function ensureAdmin(req, res, next) {
   try {
-    if (!res.locals.user.isAdmin) throw new UnauthorizedError();
+    if (!res.locals.user || !res.locals.user.isAdmin) throw new UnauthorizedError();
     return next();
   } catch (err) {
     return next(err);
   }
 }
 &nbsp;
-/** check that logged in user is correct user */
-function ensureCorrectUser(req, res, next){
+/** check that logged in user is correct user or admin */
+function ensureCorrectUserOrAdmin(req, res, next){
   try{
-    if(req.params.username === res.locals.user.username){
-      return next();
+    const user = res.locals.user;
+    if (!(user &amp;&amp; (user.isAdmin || user.username === req.params.username))) {
+      throw new UnauthorizedError();
     }
-    if(!res.locals.user.isAdmin){
-      throw new  UnauthorizedError();
-    }
+&nbsp;
     return next();
   }catch(err){
     return next(err);
@@ -306,8 +303,8 @@ function ensureCorrectUser(req, res, next){
 module.exports = {
   authenticateJWT,
   ensureLoggedIn,
-  ensureAuthorized,
-  ensureCorrectUser
+  ensureAdmin,
+  ensureCorrectUserOrAdmin
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -316,7 +313,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-08-25T00:09:50.730Z
+                at 2022-08-25T17:55:41.321Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -5,7 +5,7 @@
 const jsonschema = require("jsonschema");
 
 const express = require("express");
-const { ensureLoggedIn, ensureAuthorized, ensureCorrectUser } = require("../middleware/auth");
+const { ensureLoggedIn, ensureAdmin, ensureCorrectUserOrAdmin } = require("../middleware/auth");
 const { BadRequestError } = require("../expressError");
 const User = require("../models/user");
 const { createToken } = require("../helpers/tokens");
@@ -24,11 +24,10 @@ const router = express.Router();
  * This returns the newly created user and an authentication token for them:
  *  {user: { username, firstName, lastName, email, isAdmin }, token }
  *
- * Authorization required: login
- * TODO: ensureAdmin
+ * Authorization required: admin
  **/
 
-router.post("/", ensureLoggedIn, ensureAuthorized,
+router.post("/", ensureAdmin,
   async function (req, res, next) {
 
   const validator = jsonschema.validate(
@@ -51,11 +50,10 @@ router.post("/", ensureLoggedIn, ensureAuthorized,
  *
  * Returns list of all users.
  *
- * Authorization required: login
- * TODO: ensureAdmin
+ * Authorization required: admin
  **/
 
-router.get("/", ensureLoggedIn, ensureAuthorized,
+router.get("/", ensureAdmin,
   async function (req, res, next) {
   const users = await User.findAll();
   return res.json({ users });
@@ -66,11 +64,11 @@ router.get("/", ensureLoggedIn, ensureAuthorized,
  *
  * Returns { username, firstName, lastName, isAdmin }
  *
- * Authorization required: login
- * TODO: ensureAdmin / OR current user
+ * Authorization required: admin or correct user
+
  **/
 
-router.get("/:username", ensureLoggedIn, ensureCorrectUser,
+router.get("/:username", ensureCorrectUserOrAdmin,
   async function (req, res, next) {
   const user = await User.get(req.params.username);
   return res.json({ user });
@@ -84,11 +82,10 @@ router.get("/:username", ensureLoggedIn, ensureCorrectUser,
  *
  * Returns { username, firstName, lastName, email, isAdmin }
  *
- * Authorization required: login
- * TODO: ensureAdmin / OR current user
+ * Authorization required: admin or correct user
  **/
 
-router.patch("/:username", ensureLoggedIn, ensureCorrectUser,
+router.patch("/:username", ensureCorrectUserOrAdmin,
 async function (req, res, next) {
   const validator = jsonschema.validate(
     req.body,
@@ -107,11 +104,10 @@ async function (req, res, next) {
 
 /** DELETE /[username]  =>  { deleted: username }
  *
- * Authorization required: login
- * TODO: ensureAdmin / OR current user
+ * Authorization required: admin or correct user
  **/
 
-router.delete("/:username", ensureLoggedIn, ensureCorrectUser,
+router.delete("/:username", ensureCorrectUserOrAdmin,
  async function (req, res, next) {
   await User.remove(req.params.username);
   return res.json({ deleted: req.params.username });

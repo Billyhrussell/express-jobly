@@ -6,7 +6,7 @@ const jsonschema = require("jsonschema");
 const express = require("express");
 
 const { BadRequestError } = require("../expressError");
-const { ensureLoggedIn, ensureAuthorized } = require("../middleware/auth");
+const { ensureLoggedIn, ensureAdmin } = require("../middleware/auth");
 const Company = require("../models/company");
 
 const companyNewSchema = require("../schemas/companyNew.json");
@@ -22,10 +22,10 @@ const router = new express.Router();
  *
  * Returns { handle, name, description, numEmployees, logoUrl }
  *
- * Authorization required: login
+ * Authorization required: admin
  */
 
-router.post("/", ensureLoggedIn, ensureAuthorized, async function (req, res, next) {
+router.post("/", ensureAdmin, async function (req, res, next) {
   const validator = jsonschema.validate(
     req.body,
     companyNewSchema,
@@ -52,22 +52,17 @@ router.post("/", ensureLoggedIn, ensureAuthorized, async function (req, res, nex
  */
 
 router.get("/", async function (req, res, next) {
-  let companies;
+
   let q = req.query;
 
   if (q.minEmployees !== undefined) {
     q.minEmployees = parseInt(q.minEmployees);
-    if (isNaN(q.minEmployees)) {
-      throw new BadRequestError("minEmployees must be a number");
-    }
   }
 
   if (q.maxEmployees !== undefined) {
     q.maxEmployees = parseInt(q.maxEmployees);
-    if (isNaN(q.maxEmployees)) {
-      throw new BadRequestError("maxEmployees must be a number");
-    }
   }
+
   if(q.minEmployees && q.maxEmployees){
     if(q.minEmployees > q.maxEmployees){
       throw new BadRequestError("minEmployees must be less than maxEmployees");
@@ -86,8 +81,7 @@ router.get("/", async function (req, res, next) {
     throw new BadRequestError(errs);
   }
 
-  companies = await Company.findAll(q);
-  // how do we make sure num employees is an integer? query string defaults to string?
+  const companies = await Company.findAll(q);
 
   return res.json({ companies });
 });
@@ -116,7 +110,7 @@ router.get("/:handle", async function (req, res, next) {
  * Authorization required: login
  */
 
-router.patch("/:handle", ensureLoggedIn, ensureAuthorized, async function (req, res, next) {
+router.patch("/:handle", ensureAdmin, async function (req, res, next) {
   const validator = jsonschema.validate(
     req.body,
     companyUpdateSchema,
@@ -136,7 +130,7 @@ router.patch("/:handle", ensureLoggedIn, ensureAuthorized, async function (req, 
  * Authorization: login
  */
 
-router.delete("/:handle", ensureLoggedIn, ensureAuthorized, async function (req, res, next) {
+router.delete("/:handle", ensureAdmin, async function (req, res, next) {
   await Company.remove(req.params.handle);
   return res.json({ deleted: req.params.handle });
 });

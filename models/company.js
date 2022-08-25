@@ -61,6 +61,7 @@ class Company {
 
     // {name: 'hi', minEmployees: 20, maxEmployees: 50} =>
     // ['"name" ILIKE $1 AND "num_employees">$2 AND num_employees < $3']
+    //TODO:  use array
     const {name , minEmployees, maxEmployees } = dataToFilter;
 
     let where = "WHERE ";
@@ -100,11 +101,11 @@ class Company {
   /** Find all companies.
    *  Has option to filter by name or number of employees
    * Returns [{ handle, name, description, numEmployees, logoUrl }, ...]
-   * */
+   * */ //FIXME: _sqlForFiltering
 
   static async findAll(data) {
 
-    let {where, values } = this.sqlForFiltering(data);
+    const { where, values } = this.sqlForFiltering(data);
 
     const companiesRes = await db.query(
       `SELECT handle,

@@ -44,29 +44,28 @@ function ensureLoggedIn(req, res, next) {
 }
 
 
-/** Middleware to use when they must be logged in.
+/** Middleware to use when user must be an admin
  *
  * If not, raises Unauthorized.
  */
 
-function ensureAuthorized(req, res, next) {
+function ensureAdmin(req, res, next) {
   try {
-    if (!res.locals.user.isAdmin) throw new UnauthorizedError();
+    if (!res.locals.user || !res.locals.user.isAdmin) throw new UnauthorizedError();
     return next();
   } catch (err) {
     return next(err);
   }
 }
 
-/** check that logged in user is correct user */
-function ensureCorrectUser(req, res, next){
+/** check that logged in user is correct user or admin */
+function ensureCorrectUserOrAdmin(req, res, next){
   try{
-    if(req.params.username === res.locals.user.username){
-      return next();
+    const user = res.locals.user;
+    if (!(user && (user.isAdmin || user.username === req.params.username))) {
+      throw new UnauthorizedError();
     }
-    if(!res.locals.user.isAdmin){
-      throw new  UnauthorizedError();
-    }
+
     return next();
   }catch(err){
     return next(err);
@@ -77,6 +76,6 @@ function ensureCorrectUser(req, res, next){
 module.exports = {
   authenticateJWT,
   ensureLoggedIn,
-  ensureAuthorized,
-  ensureCorrectUser
+  ensureAdmin,
+  ensureCorrectUserOrAdmin
 };
