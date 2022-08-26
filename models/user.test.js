@@ -71,6 +71,15 @@ describe("apply", function () {
       expect(err instanceof NotFoundError).toBeTruthy();
     }
   });
+
+  test("user doesn't exist", async function () {
+    try {
+      await User.apply("u1111", jobIds[0]);
+      throw new Error("fail test, you shouldn't get here");
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
 });
 
 /************************************** register */

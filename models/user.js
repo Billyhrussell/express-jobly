@@ -214,7 +214,16 @@ class User {
     if (!user) throw new NotFoundError(`No user: ${username}`);
   }
 
+  /** Accepts a username and jobId and creates an application.
+   * Returns application { username, jobId }
+   *
+   * Throws NotFoundError if user or job is not found
+   */
   static async apply(username, jobId){
+
+    const user = await this.get(username);
+
+    if (!user) throw new NotFoundError(`No user: ${username}`);
 
     const jobRes = await db.query(
       `SELECT id
@@ -234,7 +243,7 @@ class User {
     );
 
     const application = result.rows[0];
-    console.log("APP IN USER: ", application);
+
     return application;
   }
 }

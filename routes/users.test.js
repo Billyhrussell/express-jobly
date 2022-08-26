@@ -30,7 +30,7 @@ describe("POST /users/:username/jobs/:id", function(){
 
     expect(resp.statusCode).toEqual(201);
     expect(resp.body).toEqual({
-      applied : expect.any(Number)
+      applied : jobIds[0]
     });
 })
   test("doesn't work for different user", async function(){
@@ -39,6 +39,11 @@ describe("POST /users/:username/jobs/:id", function(){
       .set("authorization", `Bearer ${u1Token}`);
 
     expect(resp.statusCode).toEqual(401);
+    expect(resp.body).toEqual({"error": {
+      "message": "Unauthorized",
+      "status": 401
+    }
+    })
   })
 
   test("works for admin", async function (){
@@ -48,7 +53,7 @@ describe("POST /users/:username/jobs/:id", function(){
 
     expect(resp.statusCode).toEqual(201);
     expect(resp.body).toEqual({
-      applied : expect.any(Number)
+      applied : jobIds[0]
     });
   })
 });

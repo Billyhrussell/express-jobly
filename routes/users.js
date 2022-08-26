@@ -47,6 +47,8 @@ router.post("/", ensureAdmin,
 
 /** User applies for a job.
  * Returns json like { applied: jobId }
+ *
+ * Authorization required: same user or admin
  */
 router.post("/:username/jobs/:id", ensureCorrectUserOrAdmin,
   async function (req, res, next) {
