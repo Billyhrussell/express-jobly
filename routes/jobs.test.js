@@ -14,14 +14,13 @@ const {
   uAdminToken,
   jobIds
 } = require("./_testCommon");
-const { query } = require("express");
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
 
-/************************************** POST /companies */
+/************************************** POST /jobs */
 
 describe("POST /jobs", function () {
   const newJob = {
@@ -38,7 +37,12 @@ describe("POST /jobs", function () {
         .set("authorization", `Bearer ${uAdminToken}`);
     expect(resp.statusCode).toEqual(201);
     expect(resp.body).toEqual({
-      job: newJob,
+      job: {
+        title: "Blogger",
+        salary: 90000,
+        equity: "0.1",
+        companyHandle: "c3"
+      },
     });
   });
 
@@ -72,6 +76,7 @@ describe("POST /jobs", function () {
     expect(resp.statusCode).toEqual(400);
   });
 });
+// TODO: also add error messages
 
 /************************************** GET / jobs */
 
@@ -89,13 +94,13 @@ describe("GET /jobs", function () {
             {
               title: "Dog Washer",
               salary: 10000,
-              equity: 0.1,
-              companyHandle: "c2"
+              equity: "0.1",
+              companyHandle: "c1"
             },
             {
               title: "Coding",
               salary: 90000,
-              equity: 0.2,
+              equity: "0.2",
               companyHandle: "c3"
             }
           ],
@@ -111,7 +116,7 @@ describe("GET /jobs", function () {
             {
               title: "Coding",
               salary: 90000,
-              equity: 0.2,
+              equity: "0.2",
               companyHandle: "c3"
             }
           ],
@@ -127,7 +132,7 @@ describe("GET /jobs", function () {
             {
               title: "Coding",
               salary: 90000,
-              equity: 0.2,
+              equity: "0.2",
               companyHandle: "c3"
             }
           ],
@@ -147,14 +152,6 @@ describe("GET /jobs", function () {
 
     expect(resp.statusCode).toEqual(400);
   });
-
-  test("check hasEquity is boolean", async function() {
-    const resp = await request(app).get("/jobs")
-    .query({ hasEquity: 2});
-
-    expect(resp.statusCode).toEqual(400);
-  });
-
 
   test("fails: test next() handler", async function () {
     // there's no normal failure event which will cause this route to fail ---
@@ -267,7 +264,7 @@ describe("DELETE /jobs/:id", function () {
     const resp = await request(app)
         .delete(`/jobs/${jobIds[0]}`)
         .set("authorization", `Bearer ${uAdminToken}`);
-    expect(resp.body).toEqual({ deleted: `${jobIds[0]}` });
+    expect(resp.body).toEqual({ deleted: jobIds[0] });
   });
 
   test("unauth for users", async function () {

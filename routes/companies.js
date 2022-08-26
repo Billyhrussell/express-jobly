@@ -96,7 +96,8 @@ router.get("/", async function (req, res, next) {
 
 router.get("/:handle", async function (req, res, next) {
   const company = await Company.get(req.params.handle);
-  return res.json({ company });
+
+  return res.json(company);
 });
 
 /** PATCH /[handle] { fld1, fld2, ... } => { company }

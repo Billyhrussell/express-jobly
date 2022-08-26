@@ -23,7 +23,7 @@ describe("create", function () {
   const newJob = {
     title: "testTitle",
     salary: 10000,
-    equity: 0.5,
+    equity: "0.5",
     companyHandle: "c1"
   };
 
@@ -39,20 +39,10 @@ describe("create", function () {
       {
         title: "testTitle",
         salary: 10000,
-        equity: 0.5,
+        equity: "0.5",
         companyHandle: "c1"
       },
     ]);
-  });
-
-  test("bad request with dupe", async function () {
-    try {
-      await Job.create(newJob);
-      await Job.create(newJob);
-      throw new Error("fail test, you shouldn't get here");
-    } catch (err) {
-      expect(err instanceof BadRequestError).toBeTruthy();
-    }
   });
 });
 
@@ -89,19 +79,19 @@ describe("findAll", function () {
       {
         title: "j1",
         salary: 1000,
-        equity: 0.1,
+        equity: "0.1",
         companyHandle: "c1"
       },
       {
         title: "j2",
         salary: 2000,
-        equity: 0.2,
-        companyHandle: "c2"
+        equity: "0.2",
+        companyHandle: "c1"
       },
       {
         title: "j3",
         salary: 3000,
-        equity: 0,
+        equity: "0",
         companyHandle: "c3"
       },
     ]);
@@ -113,7 +103,7 @@ describe("findAll", function () {
       [{
         title: "j1",
         salary: 1000,
-        equity: 0.1,
+        equity: "0.1",
         companyHandle: "c1"
     }]);
   });
@@ -124,8 +114,8 @@ describe("findAll", function () {
       [{
         title: "j2",
         salary: 2000,
-        equity: 0.2,
-        companyHandle: "c2"
+        equity: "0.2",
+        companyHandle: "c1"
       }]
     )
   });
@@ -136,19 +126,19 @@ describe("findAll", function () {
       [{
         title: "j1",
         salary: 1000,
-        equity: 0.1,
+        equity: "0.1",
         companyHandle: "c1"
       },
       {
         title: "j2",
         salary: 2000,
-        equity: 0.2,
-        companyHandle: "c2"
+        equity: "0.2",
+        companyHandle: "c1"
       }]
     )
   });
 });
-
+// FIXME: const
 
 /************************************** get */
 
@@ -158,7 +148,7 @@ describe("get", function () {
     expect(job).toEqual({
       title: "j1",
       salary: 1000,
-      equity: 0.1,
+      equity: "0.1",
       companyHandle: "c1"
     });
   });
@@ -179,7 +169,7 @@ describe("update", function () {
   const updateData = {
     title: "j4",
     salary: 4000,
-    equity: 0.4
+    equity: "0.4"
   };
 
   test("works", async function () {
@@ -196,7 +186,7 @@ describe("update", function () {
     expect(result.rows).toEqual([{
       title: "j4",
       salary: 4000,
-      equity: 0.4,
+      equity: "0.4",
       companyHandle: "c1"
     }]);
   });

@@ -59,9 +59,7 @@ router.get("/", async function (req, res, next) {
     q.salary = parseInt(q.salary);
   }
 
-  if(q.hasEquity === "true"){
-    q.hasEquity = true;
-  }
+  q.hasEquity = q.hasEquity === "true";
 
   const validator = jsonschema.validate(
     q,
@@ -114,7 +112,7 @@ router.patch("/:id", ensureAdmin, async function (req, res, next) {
     throw new BadRequestError(errs);
   }
 
-  const job = await Job.update(req.params.id, req.body);
+  const job = await Job.update(Number(req.params.id), req.body);
   return res.json({ job });
 });
 
@@ -125,7 +123,7 @@ router.patch("/:id", ensureAdmin, async function (req, res, next) {
 
 router.delete("/:id", ensureAdmin, async function (req, res, next) {
   await Job.remove(req.params.id);
-  return res.json({ deleted: req.params.id });
+  return res.json({ deleted: Number(req.params.id) });
 });
 
 

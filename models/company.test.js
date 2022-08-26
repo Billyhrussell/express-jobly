@@ -56,24 +56,14 @@ describe("create", function () {
   });
 });
 
-/************************************** getJobs */
-describe("getJobs", function(){
-  test("receieve correct jobs for company", async function(){
-    const results = await Company.getJobs("c1");
-    const jobs = results.rows;
-    expect(jobs).toEqual(
-      [{id: expect.any(Number), title: 'j1', salary: 1000, equity: 0.1}])
-  })
-})
-
 
 /************************************** sqlForFiltering */
 
-describe("sqlForFiltering", function(){
+describe("_sqlForFiltering", function(){
   test("recieve correct data obj", function(){
     const data = {name: 'hi', minEmployees: 20, maxEmployees: 50};
 
-    expect(Company.sqlForFiltering(data)).toEqual(
+    expect(Company._sqlForFiltering(data)).toEqual(
       {where: 'WHERE name ILIKE $1 AND num_employees >= $2 AND num_employees <= $3',
        values: ['%hi%', 20, 50]
       }
@@ -83,7 +73,7 @@ describe("sqlForFiltering", function(){
   test("recieve empty data object", function(){
     const data = {};
 
-    expect(Company.sqlForFiltering(data)).toEqual(
+    expect(Company._sqlForFiltering(data)).toEqual(
       {where: '',
        values: []
       }
@@ -159,6 +149,8 @@ describe("get", function () {
       description: "Desc1",
       numEmployees: 1,
       logoUrl: "http://c1.img",
+      jobs: [{id: expect.any(Number), title: 'j1', salary: 1000, equity: "0.1"},
+      {id: expect.any(Number), title: 'j2', salary: 2000, equity: "0.2"}]
     });
   });
 

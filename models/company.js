@@ -50,19 +50,6 @@ class Company {
   }
 
   /**
-   *
-   *
-   */
-  static async getJobs(handle){
-    const jobs = await db.query(`
-      SELECT id, title, salary, equity
-      FROM jobs
-      WHERE company_handle = $1`, [handle]
-    )
-    return jobs.rows;
-  };
-
-  /**
    * Accepts an object with data to filter selection in database
    * returns js object with string of setCols for WHERE clause
    * and values to filter by
@@ -70,7 +57,7 @@ class Company {
       {setCols: 'name ILIKE $1 AND num_employees>$2 AND num_employees < $3',
       values: [hi, 20, 50]}
    */
-  static sqlForFiltering(dataToFilter) {
+  static _sqlForFiltering(dataToFilter) {
 
     // {name: 'hi', minEmployees: 20, maxEmployees: 50} =>
     // ['"name" ILIKE $1 AND "num_employees">$2 AND num_employees < $3']
@@ -114,11 +101,11 @@ class Company {
   /** Find all companies.
    *  Has option to filter by name or number of employees
    * Returns [{ handle, name, description, numEmployees, logoUrl }, ...]
-   * */ //FIXME: _sqlForFiltering
+   * */
 
   static async findAll(data) {
 
-    const { where, values } = this.sqlForFiltering(data);
+    const { where, values } = this._sqlForFiltering(data);
 
     const companiesRes = await db.query(
       `SELECT handle,
@@ -155,7 +142,15 @@ class Company {
 
     if (!company) throw new NotFoundError(`No company: ${handle}`);
 
-    return company;
+    const jobsRes = await db.query(`
+      SELECT id, title, salary, equity
+      FROM jobs
+      WHERE company_handle = $1`, [handle]
+    )
+
+    const jobs = jobsRes.rows;
+
+    return { ...company, jobs };
   }
 
   /** Update company data with `data`.

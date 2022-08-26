@@ -16,14 +16,14 @@ class Job {
    * */
 
   static async create({ title, salary, equity, companyHandle }) {
-    const duplicateCheck = await db.query(
-      `SELECT title, salary, equity, company_handle
-           FROM jobs
-           WHERE title=$1 AND salary=$2 AND equity=$3 AND company_handle=$4`,
-      [title, salary, equity, companyHandle]);
+    // const duplicateCheck = await db.query(
+    //   `SELECT title, salary, equity, company_handle
+    //        FROM jobs
+    //        WHERE title=$1 AND salary=$2 AND equity=$3 AND company_handle=$4`,
+    //   [title, salary, equity, companyHandle]);
 
-    if (duplicateCheck.rows[0])
-      throw new BadRequestError(`Duplicate job: ${title} at ${companyHandle}`);
+    // if (duplicateCheck.rows[0])
+    //   throw new BadRequestError(`Duplicate job: ${title} at ${companyHandle}`);
 
     const result = await db.query(
       `INSERT INTO jobs(
@@ -58,22 +58,25 @@ class Job {
 
     const { title, minSalary, hasEquity } = dataToFilter;
     let where = [];
+    let values = [];
 
     if(title) {
-      where.push(`title ILIKE $${where.length + 1}`);
-      dataToFilter.title = '%'.concat(dataToFilter.title, '%');
+      values.push(`%${title}%`);
+      where.push(`title ILIKE $${values.length}`);
     }
 
-    if(minSalary) where.push(`salary >= $${where.length + 1}`);
-
-    let values = Object.values(dataToFilter);
+    if(minSalary) {
+      values.push(minSalary);
+      where.push(`salary >= $${values.length}`);
+    }
 
     if(hasEquity) {
       where.push(`equity > 0`);
-      values.pop();
     }
 
-    where = where.length > 0 ? 'WHERE '.concat(where.join(" AND ")) : '';
+    where = where.length > 0 ?
+            'WHERE ' + where.join(" AND ")
+            : '';
 
     return {
       where,

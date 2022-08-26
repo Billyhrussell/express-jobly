@@ -11,7 +11,8 @@ const {
   commonAfterEach,
   commonAfterAll,
   u1Token,
-  uAdminToken
+  uAdminToken,
+  jobIds
 } = require("./_testCommon");
 const { query } = require("express");
 
@@ -193,6 +194,20 @@ describe("GET /companies/:handle", function () {
         description: "Desc1",
         numEmployees: 1,
         logoUrl: "http://c1.img",
+        jobs: [
+          {
+            id: jobIds[0],
+            title: "Pet sitter",
+            salary: 5000,
+            equity: null
+          },
+          {
+            id: jobIds[1],
+            title: "Dog Washer",
+            salary: 10000,
+            equity: "0.1"
+          }
+        ]
       },
     });
   });
@@ -206,6 +221,7 @@ describe("GET /companies/:handle", function () {
         description: "Desc2",
         numEmployees: 2,
         logoUrl: "http://c2.img",
+        jobs: []
       },
     });
   });
