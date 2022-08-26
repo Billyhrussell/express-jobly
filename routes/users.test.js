@@ -254,9 +254,11 @@ describe("GET /users/:username", function () {
         lastName: "U1L",
         email: "user1@user.com",
         isAdmin: false,
+        jobs: [jobIds[1], jobIds[2]]
       },
     })
   });
+
 
   test("doesn't work for different user logged in", async function () {
     const resp = await request(app)
@@ -276,6 +278,7 @@ describe("GET /users/:username", function () {
         lastName: "U1L",
         email: "user1@user.com",
         isAdmin: false,
+        jobs: [jobIds[1], jobIds[2]]
       },
     });
   });

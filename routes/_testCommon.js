@@ -87,8 +87,14 @@ async function commonBeforeAll() {
     equity: 0.2,
     companyHandle: "c3"
   })
+
+
   const job = await db.query(`SELECT id FROM jobs`);
   jobIds.push(...job.rows.map(j => j.id));
+
+  await User.apply("u1", jobIds[1]);
+  await User.apply("u1", jobIds[2]);
+
 }
 
 async function commonBeforeEach() {
