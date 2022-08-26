@@ -45,6 +45,17 @@ router.post("/", ensureAdmin,
   return res.status(201).json({ user, token });
 });
 
+/** User applies for a job.
+ * Returns json like { applied: jobId }
+ */
+router.post("/:username/jobs/:id", ensureCorrectUserOrAdmin,
+  async function (req, res, next){
+    console.log("PARAMS: ", req.params);
+    const application = await User.apply(req.params.username, req.params.id);
+    console.log("APPLICATION ", application)
+    return res.status(201).json({applied : application.jobId});
+  });
+
 
 /** GET / => { users: [ {username, firstName, lastName, email }, ... ] }
  *

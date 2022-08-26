@@ -12,6 +12,7 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
+  jobIds,
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
@@ -52,6 +53,24 @@ describe("authenticate", function () {
   });
 });
 
+describe("apply", function (){
+
+  test("correct user works", async function() {
+    const application = await User.apply("u1", jobIds[0]);
+
+    expect(application).toEqual({username: "u1", jobId: expect.any(Number)});
+  })
+
+  test("job id doesn't exist", async function (){
+    try{
+      const application = await User.apply("u1", 22222);
+      throw new Error("job doesn't exist");
+    }catch(err){
+      console.log("INSIDE CATCH ", err);
+      expect(err instanceof NotFoundError).toBeTruthy;
+    }
+  })
+});
 /************************************** register */
 
 describe("register", function () {
@@ -228,3 +247,4 @@ describe("remove", function () {
     }
   });
 });
+

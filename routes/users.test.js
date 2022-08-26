@@ -13,12 +13,45 @@ const {
   commonAfterAll,
   u1Token,
   uAdminToken,
+  jobIds,
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
+
+/************************************** POST /:username/jobs/:id */
+describe("POST /users/:username/jobs/:id", function(){
+  test("works for correct user", async function(){
+    const resp = await request(app)
+      .post(`/users/u1/jobs/${jobIds[0]}`)
+      .set("authorization", `Bearer ${u1Token}`);
+
+    expect(resp.statusCode).toEqual(201);
+    expect(resp.body).toEqual({
+      applied : expect.any(Number)
+    });
+})
+  test("doesn't work for different user", async function(){
+    const resp = await request(app)
+      .post(`/users/u2/jobs/${jobIds[0]}`)
+      .set("authorization", `Bearer ${u1Token}`);
+
+    expect(resp.statusCode).toEqual(401);
+  })
+
+  test("works for admin", async function (){
+    const resp = await request(app)
+      .post(`/users/u1/jobs/${jobIds[0]}`)
+      .set("authorization", `Bearer ${uAdminToken}`);
+
+    expect(resp.statusCode).toEqual(201);
+    expect(resp.body).toEqual({
+      applied : expect.any(Number)
+    });
+  })
+});
 
 /************************************** POST /users */
 
