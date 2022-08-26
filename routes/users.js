@@ -30,30 +30,29 @@ const router = express.Router();
 router.post("/", ensureAdmin,
   async function (req, res, next) {
 
-  const validator = jsonschema.validate(
-    req.body,
-    userNewSchema,
-    {required: true}
-  );
-  if (!validator.valid) {
-    const errs = validator.errors.map(e => e.stack);
-    throw new BadRequestError(errs);
-  }
+    const validator = jsonschema.validate(
+      req.body,
+      userNewSchema,
+      { required: true }
+    );
+    if (!validator.valid) {
+      const errs = validator.errors.map(e => e.stack);
+      throw new BadRequestError(errs);
+    }
 
-  const user = await User.register(req.body);
-  const token = createToken(user);
-  return res.status(201).json({ user, token });
-});
+    const user = await User.register(req.body);
+    const token = createToken(user);
+    return res.status(201).json({ user, token });
+  });
 
 /** User applies for a job.
  * Returns json like { applied: jobId }
  */
 router.post("/:username/jobs/:id", ensureCorrectUserOrAdmin,
-  async function (req, res, next){
-    console.log("PARAMS: ", req.params);
+  async function (req, res, next) {
     const application = await User.apply(req.params.username, req.params.id);
-    console.log("APPLICATION ", application)
-    return res.status(201).json({applied : application.jobId});
+
+    return res.status(201).json({ applied: application.jobId });
   });
 
 
@@ -66,9 +65,9 @@ router.post("/:username/jobs/:id", ensureCorrectUserOrAdmin,
 
 router.get("/", ensureAdmin,
   async function (req, res, next) {
-  const users = await User.findAll();
-  return res.json({ users });
-});
+    const users = await User.findAll();
+    return res.json({ users });
+  });
 
 
 /** GET /[username] => { user }
@@ -81,9 +80,9 @@ router.get("/", ensureAdmin,
 
 router.get("/:username", ensureCorrectUserOrAdmin,
   async function (req, res, next) {
-  const user = await User.get(req.params.username);
-  return res.json({ user });
-});
+    const user = await User.get(req.params.username);
+    return res.json({ user });
+  });
 
 
 /** PATCH /[username] { user } => { user }
@@ -97,20 +96,20 @@ router.get("/:username", ensureCorrectUserOrAdmin,
  **/
 
 router.patch("/:username", ensureCorrectUserOrAdmin,
-async function (req, res, next) {
-  const validator = jsonschema.validate(
-    req.body,
-    userUpdateSchema,
-    {required: true}
-  );
-  if (!validator.valid) {
-    const errs = validator.errors.map(e => e.stack);
-    throw new BadRequestError(errs);
-  }
+  async function (req, res, next) {
+    const validator = jsonschema.validate(
+      req.body,
+      userUpdateSchema,
+      { required: true }
+    );
+    if (!validator.valid) {
+      const errs = validator.errors.map(e => e.stack);
+      throw new BadRequestError(errs);
+    }
 
-  const user = await User.update(req.params.username, req.body);
-  return res.json({ user });
-});
+    const user = await User.update(req.params.username, req.body);
+    return res.json({ user });
+  });
 
 
 /** DELETE /[username]  =>  { deleted: username }
@@ -119,10 +118,10 @@ async function (req, res, next) {
  **/
 
 router.delete("/:username", ensureCorrectUserOrAdmin,
- async function (req, res, next) {
-  await User.remove(req.params.username);
-  return res.json({ deleted: req.params.username });
-});
+  async function (req, res, next) {
+    await User.remove(req.params.username);
+    return res.json({ deleted: req.params.username });
+  });
 
 
 module.exports = router;

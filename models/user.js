@@ -216,6 +216,16 @@ class User {
 
   static async apply(username, jobId){
 
+    const jobRes = await db.query(
+      `SELECT id
+      FROM jobs
+      WHERE id = $1`, [jobId]
+    )
+
+    const job = jobRes.rows[0];
+
+    if (!job) throw new NotFoundError(`No job: ${jobId}`);
+
     let result = await db.query(
       `INSERT INTO applications(username, job_id)
        VALUES ($1, $2)

@@ -53,24 +53,26 @@ describe("authenticate", function () {
   });
 });
 
-describe("apply", function (){
+/************************************** apply */
 
-  test("correct user works", async function() {
+describe("apply", function () {
+
+  test("correct user works", async function () {
     const application = await User.apply("u1", jobIds[0]);
 
-    expect(application).toEqual({username: "u1", jobId: expect.any(Number)});
-  })
+    expect(application).toEqual({ username: "u1", jobId: expect.any(Number) });
+  });
 
-  test("job id doesn't exist", async function (){
-    try{
-      const application = await User.apply("u1", 22222);
-      throw new Error("job doesn't exist");
-    }catch(err){
-      console.log("INSIDE CATCH ", err);
-      expect(err instanceof NotFoundError).toBeTruthy;
+  test("job id doesn't exist", async function () {
+    try {
+      await User.apply("u1", 1111111);
+      throw new Error("fail test, you shouldn't get here");
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
     }
-  })
+  });
 });
+
 /************************************** register */
 
 describe("register", function () {
@@ -235,7 +237,7 @@ describe("remove", function () {
   test("works", async function () {
     await User.remove("u1");
     const res = await db.query(
-        "SELECT * FROM users WHERE username='u1'");
+      "SELECT * FROM users WHERE username='u1'");
     expect(res.rows.length).toEqual(0);
   });
 
